@@ -8,7 +8,7 @@ const Product=new mg.Schema({
     desc:{
         type:String,
         require:true,
-        unique:true
+        
     },
     img:{
         type:String,

@@ -7,7 +7,7 @@ const Verify=(req,res,next)=>{
         console.log(token)
         jwt.verify(token,process.env.JWT_TOKEN,(er,user)=>{
             if(er) return res.status(400).json("some error in token")
-                console.log(user)
+                // console.log(user)
                 req.user=user
             next();
 
@@ -32,4 +32,18 @@ const verifyandAuth=(req,res,next)=>{
 
 
 
-module.exports={Verify,verifyandAuth}
+const verifyandAdmin=(req,res,next)=>{
+    Verify(req,res,()=>{
+        // console.log(req.user);
+      if(req.user.isAdmin){
+        next();
+    }
+    else{
+        res.status(400).json("you r no admin")
+    }
+    })
+}
+
+
+
+module.exports={Verify,verifyandAuth,verifyandAdmin}

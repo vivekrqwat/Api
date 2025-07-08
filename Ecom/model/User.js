@@ -14,7 +14,7 @@ const User=new mg.Schema({
         type:String,
         require:true
     },
-    isAdin:{
+    isAdmin:{
         type:Boolean,
         default:false
     }
