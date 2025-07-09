@@ -64,12 +64,13 @@ router.get("/",verifyandAdmin,async(req,res)=>{
 router.get("/income",async(req,res)=>{
     try{
         const date=new Date();
-        const lastmonth=new Date(date.setMonth(date.getMonth-1));
-        const prevmonth=new Date(new Date().setMonth(lastmonth-1));
+        const lastmonth=new Date(date.setMonth(date.getMonth()-1));
+        const prevmonth=new Date(new Date().setMonth(lastmonth.getMonth()-1));
         const income =await Order.aggregate([
           { $match:{createdAt:{$gte:prevmonth}}},
            {
-                $project:{month:"$createdAt",
+                $project:{
+                    month:{$month:"$createdAt"},
                     sales:"$amount"
                 }
                 

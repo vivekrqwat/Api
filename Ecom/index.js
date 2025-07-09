@@ -5,7 +5,7 @@ const mongo=require("mongoose");
 const auth=require("./Routes/Auth")
 const user=require("./Routes/UserRoute")
 const product=require("./Routes/Productroute");
-
+const order=require("./Routes/Orderroute")
 
 dotenv.config();
 app.use(express.json())
@@ -13,6 +13,7 @@ app.use(express.json())
 app.use("/api/auth",auth)
 app.use("/api/users",user)
 app.use("/api/product",product)
+app.use('/api/order',order)
 
 
 
